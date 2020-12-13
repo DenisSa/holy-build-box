@@ -1,4 +1,4 @@
-VERSION = 2.0.1
+VERSION = latest
 MAJOR_VERSION = 2.0
 
 .PHONY: all 32 64 test tags release
@@ -9,7 +9,7 @@ all: 32 64
 	docker build --rm --squash -t phusion/holy-build-box-32:$(VERSION) -f Dockerfile-32 --pull .
 
 64:
-	docker build --rm --squash -t phusion/holy-build-box-64:$(VERSION) -f Dockerfile-64 --pull .
+	docker build --rm -t b64/buildbox:$(VERSION) -f Dockerfile-64 --pull .
 
 test:
 	echo "*** You should run: SKIP_FINALIZE=1 linux32 bash /hbb_build/build.sh"

@@ -4,6 +4,8 @@ set -e
 
 source /hbb_build/scripts/common.sh
 
+PYTHON_VERSION=2.7.15
+
 if ! eval_bool "$SKIP_PYTHON"; then
 	header "Installing Python $PYTHON_VERSION"
 	download_and_extract Python-$PYTHON_VERSION.tgz \

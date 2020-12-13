@@ -4,6 +4,9 @@ set -e
 
 source /hbb_build/scripts/common.sh
 
+CMAKE_VERSION=3.16.4
+CMAKE_MAJOR_VERSION=3.16
+
 if ! eval_bool "$SKIP_CMAKE"; then
 	header "Installing CMake $CMAKE_VERSION"
 	download_and_extract cmake-$CMAKE_VERSION.tar.gz \

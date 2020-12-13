@@ -4,6 +4,8 @@ set -e
 
 source /hbb_build/scripts/common.sh
 
+CURL_VERSION=7.63.0
+
 function install_curl()
 {
 	local VARIANT="$1"

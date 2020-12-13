@@ -4,6 +4,8 @@ set -e
 
 source /hbb_build/scripts/common.sh
 
+LIBTOOL_VERSION=2.4.6
+
 if ! eval_bool "$SKIP_LIBTOOL"; then
 	header "Installing libtool $LIBTOOL_VERSION"
 	download_and_extract libtool-$LIBTOOL_VERSION.tar.gz \

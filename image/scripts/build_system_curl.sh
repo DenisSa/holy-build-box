@@ -4,6 +4,8 @@ set -e
 
 source /hbb_build/scripts/common.sh
 
+CURL_VERSION=7.63.0
+
 if ! eval_bool "$SKIP_SYSTEM_CURL"; then
 	header "Installing system Curl $CURL_VERSION"
 	run tar xjf /hbb_build/curl-$CURL_VERSION.tar.bz2

@@ -1,3 +1,20 @@
 FROM centos:6
-ADD image /hbb_build
-RUN bash /hbb_build/build.sh
+
+COPY image/common /hbb_build
+COPY image/scripts/common.sh image/scripts/initialize.sh image/scripts/build_users_groups.sh image/scripts/build_variants.sh image/scripts/build_update_repos.sh image/scripts/build_update_system.sh /hbb_build/scripts/
+SHELL ["/bin/bash", "-c"]
+
+RUN /hbb_build/scripts/initialize.sh && /hbb_build/scripts/build_users_groups.sh && /hbb_build/scripts/build_variants.sh && /hbb_build/scripts/build_update_repos.sh &&  /hbb_build/scripts/build_update_system.sh
+
+COPY /image/scripts/build_install_compiler_toolchain.sh /image/scripts/build_system_curl.sh /image/scripts/build_system_openssl.sh /hbb_build/scripts/
+COPY /image/curl-7.63.0.tar.bz2 /hbb_build/
+RUN  /hbb_build/scripts/build_install_compiler_toolchain.sh && /hbb_build/scripts/build_system_openssl.sh && /hbb_build/scripts/build_system_curl.sh
+
+COPY /image/scripts/build_m4.sh /image/scripts/build_autoconf.sh /image/scripts/build_automake.sh /image/scripts/build_libtool.sh /image/scripts/build_pkgconfig.sh /image/scripts/build_ccache.sh /image/scripts/build_cmake.sh /image/scripts/build_git.sh /image/scripts/build_python.sh /image/scripts/build_libstdcxx.sh /image/scripts/build_zlib.sh /image/scripts/build_curl.sh /image/scripts/build_sqlite.sh /hbb_build/scripts/
+
+RUN /hbb_build/scripts/build_m4.sh && /hbb_build/scripts/build_autoconf.sh && /hbb_build/scripts/build_automake.sh && /hbb_build/scripts/build_libtool.sh && /hbb_build/scripts/build_pkgconfig.sh && /hbb_build/scripts/build_ccache.sh && /hbb_build/scripts/build_cmake.sh && /hbb_build/scripts/build_git.sh && /hbb_build/scripts/build_python.sh && /hbb_build/scripts/build_libstdcxx.sh && /hbb_build/scripts/build_zlib.sh && /hbb_build/scripts/build_curl.sh && /hbb_build/scripts/build_sqlite.sh
+
+COPY image/scripts/build_openssl.sh /hbb_build/scripts/
+RUN /hbb_build/scripts/build_openssl.sh
+
+RUN yum install -y flex && yum install -y bison

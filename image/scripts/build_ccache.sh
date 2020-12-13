@@ -4,6 +4,8 @@ set -e
 
 source /hbb_build/scripts/common.sh
 
+CCACHE_VERSION=3.5
+
 if ! eval_bool "$SKIP_CCACHE"; then
 	header "Installing ccache $CCACHE_VERSION"
 	download_and_extract ccache-$CCACHE_VERSION.tar.gz \

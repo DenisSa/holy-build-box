@@ -4,6 +4,8 @@ set -e
 
 source /hbb_build/scripts/common.sh
 
+OPENSSL_VERSION=1.0.2q
+
 function install_openssl()
 {
 	local VARIANT="$1"

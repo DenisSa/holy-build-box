@@ -4,6 +4,9 @@ set -e
 
 source /hbb_build/scripts/common.sh
 
+SQLITE_VERSION=3260000
+SQLITE_YEAR=2018
+
 function install_sqlite()
 {
 	local VARIANT="$1"

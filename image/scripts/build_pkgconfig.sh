@@ -4,6 +4,8 @@ set -e
 
 source /hbb_build/scripts/common.sh
 
+PKG_CONFIG_VERSION=0.29.2
+
 if ! eval_bool "$SKIP_PKG_CONFIG"; then
 	header "Installing pkg-config $PKG_CONFIG_VERSION"
 	download_and_extract pkg-config-$PKG_CONFIG_VERSION.tar.gz \

@@ -4,6 +4,8 @@ set -e
 
 source /hbb_build/scripts/common.sh
 
+GCC_LIBSTDCXX_VERSION=8.3.0
+
 function install_libstdcxx()
 {
 	local VARIANT="$1"

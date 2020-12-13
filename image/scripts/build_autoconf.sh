@@ -4,6 +4,8 @@ set -e
 
 source /hbb_build/scripts/common.sh
 
+AUTOCONF_VERSION=2.69
+
 if ! eval_bool "$SKIP_AUTOCONF"; then
 	header "Installing autoconf $AUTOCONF_VERSION"
 	download_and_extract autoconf-$AUTOCONF_VERSION.tar.gz \

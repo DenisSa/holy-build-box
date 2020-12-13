@@ -4,6 +4,8 @@ set -e
 
 source /hbb_build/scripts/common.sh
 
+ZLIB_VERSION=1.2.11
+
 function install_zlib()
 {
 	local VARIANT="$1"

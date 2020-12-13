@@ -4,6 +4,8 @@ set -e
 
 source /hbb_build/scripts/common.sh
 
+GIT_VERSION=2.25.1
+
 if ! eval_bool "$SKIP_GIT"; then
 	header "Installing Git $GIT_VERSION"
 	download_and_extract git-$GIT_VERSION.tar.gz \

@@ -4,6 +4,7 @@ set -e
 
 source /hbb_build/scripts/common.sh
 
+OPENSSL_VERSION=1.1.1
 
 if ! eval_bool "$SKIP_SYSTEM_OPENSSL"; then
 	header "Installing system OpenSSL $OPENSSL_VERSION"
@@ -18,7 +19,7 @@ if ! eval_bool "$SKIP_SYSTEM_OPENSSL"; then
 		run strip --strip-all /hbb/bin/openssl
 		run strip --strip-debug /hbb/lib/libssl.so /hbb/lib/libcrypto.so
 		run rm -f /hbb/lib/libssl.a /hbb/lib/libcrypto.a
-		run ln -s /etc/pki/tls/certs/ca-bundle.crt /hbb/openssl/cert.pem
+		#run ln -s /etc/pki/tls/certs/ca-bundle.crt /hbb/openssl/cert.pem
 	)
 	if [[ "$?" != 0 ]]; then false; fi
 

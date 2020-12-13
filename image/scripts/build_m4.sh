@@ -4,6 +4,8 @@ set -e
 
 source /hbb_build/scripts/common.sh
 
+M4_VERSION=1.4.18
+
 if ! eval_bool "$SKIP_M4"; then
 	header "Installing m4 $M4_VERSION"
 	download_and_extract m4-$M4_VERSION.tar.gz \

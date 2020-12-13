@@ -4,6 +4,8 @@ set -e
 
 source /hbb_build/scripts/common.sh
 
+AUTOMAKE_VERSION=1.16.1
+
 if ! eval_bool "$SKIP_AUTOMAKE"; then
 	header "Installing automake $AUTOMAKE_VERSION"
 	download_and_extract automake-$AUTOMAKE_VERSION.tar.gz \
