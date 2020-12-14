@@ -1,31 +1,15 @@
 VERSION = latest
-MAJOR_VERSION = 2.0
 
-.PHONY: all 32 64 test tags release
+.PHONY: all 64 tags release
 
-all: 32 64
-
-32:
-	docker build --rm --squash -t phusion/holy-build-box-32:$(VERSION) -f Dockerfile-32 --pull .
+all: 64
 
 64:
 	docker build --rm -t b64/buildbox:$(VERSION) -f Dockerfile-64 --pull .
 
-test:
-	echo "*** You should run: SKIP_FINALIZE=1 linux32 bash /hbb_build/build.sh"
-	docker run -t -i --rm -v `pwd`/image:/hbb_build:ro phusion/centos-6-32:latest bash
-
-test64:
-	echo "*** You should run: SKIP_FINALIZE=1 bash /hbb_build/build.sh"
-	docker run -t -i --rm -v `pwd`/image:/hbb_build:ro centos:6 bash
-
 tags:
-	docker tag phusion/holy-build-box-32:$(VERSION) phusion/holy-build-box-32:$(MAJOR_VERSION)
-	docker tag phusion/holy-build-box-64:$(VERSION) phusion/holy-build-box-64:$(MAJOR_VERSION)
-	docker tag phusion/holy-build-box-32:$(VERSION) phusion/holy-build-box-32:latest
-	docker tag phusion/holy-build-box-64:$(VERSION) phusion/holy-build-box-64:latest
+	az acr login --name b64buildbox.azurecr.io
+	docker tag b64/buildbox b64buildbox.azurecr.io/buildbox:latest
 
 release: tags
-	docker push phusion/holy-build-box-32
-	docker push phusion/holy-build-box-64
-	@echo "*** Don't forget to create a tag. git tag rel-$(VERSION) && git push origin rel-$(VERSION)"
+	docker push b64buildbox.azurecr.io/buildbox:latest

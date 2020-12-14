@@ -18,3 +18,5 @@ COPY image/scripts/build_openssl.sh /hbb_build/scripts/
 RUN /hbb_build/scripts/build_openssl.sh
 
 RUN yum install -y flex && yum install -y bison
+
+RUN yum clean -y all && rm -rf /hbb/share/doc /hbb/share/man && rm -rf /hbb_build /tmp/* && rm -rf /hbb_*/share/doc /hbb_*/share/man
